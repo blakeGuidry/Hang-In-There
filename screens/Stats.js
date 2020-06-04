@@ -20,7 +20,7 @@ class Stats extends Component {
   getBests() {
     axios.get('http://localhost:8000/bests')
       .then(bests => {
-        this.setState({bests: bests.data})
+        //this.setState({bests: bests.data})
       })
       .catch(err => console.error(err));
   }

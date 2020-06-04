@@ -9,53 +9,53 @@ mongoose.connect('mongodb://localhost:27017/hangboard', {useNewUrlParser: true})
   });
 
 const sessionSchema = mongoose.Schema({
-  date: {
+  Date: {
     type: Date,
     required: true
   },
-  jug: {
-    time: Number,
-    weight: Number
+  Jug: {
+    Time: Number,
+    Weight: Number
   },
-  imr: {
-    time: Number,
-    weight: Number
+  IMR: {
+    Time: Number,
+    Weight: Number
   },
-  medEdge: {
-    time: Number,
-    weight: Number
+  'Medium Edge': {
+    Time: Number,
+    Weight: Number
   },
-  leftWidePinch: {
-    time: Number,
-    weight: Number
+  'Wide Pinch (L)': {
+    Time: Number,
+    Weight: Number
   },
-  rightWidePinch: {
-    time: Number,
-    weight: Number
+  'Wide Pinch (R)': {
+    Time: Number,
+    Weight: Number
   },
-  mr: {
-    time: Number,
-    weight: Number
+  MR: {
+    Time: Number,
+    Weight: Number
   },
-  lgOpen: {
-    time: Number,
-    weight: Number
+  'Lg Open-Hand': {
+    Time: Number,
+    Weight: Number
   },
-  leftMedPinch: {
-    time: Number,
-    weight: Number
+  'Medium Pinch (L)': {
+    Time: Number,
+    Weight: Number
   },
-  rightMedPinch: {
-    time: Number,
-    weight: Number
+  'Medium Pinch (R)': {
+    Time: Number,
+    Weight: Number
   },
-  sloper: {
-    time: Number,
-    weight: Number
+  Sloper: {
+    Time: Number,
+    Weight: Number
   },
-  mrp: {
-    time: Number,
-    weight: Number
+  MRP: {
+    Time: Number,
+    Weight: Number
   }
 })
 

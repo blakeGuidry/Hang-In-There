@@ -5,7 +5,7 @@ const save = (sesh, cb) => {
   
   doc.save((err, results) => {
     if (err) {
-      console.log('Error with save query');
+      console.error(err, 'Error with save query');
       cb(err, null);
     } else {
       cb(null, results);
