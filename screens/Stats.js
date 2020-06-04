@@ -1,29 +1,41 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import axios from 'axios';
 
 import Exercise from '../components/Stats/Exercise';
+import NoStats from '../components/Stats/NoStats';
 
 class Stats extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      bests: []
+    }
   }
 
   componentDidMount() {
-    this.getStats();
+    this.getBests();
   }
 
-  getStats() {
-    axios.get('http://localhost:8000/stats')
-      .then(() => console.log('axios works'))
-      .catch(() => console.log('no bueno'));
+  getBests() {
+    axios.get('http://localhost:8000/bests')
+      .then(bests => {
+        this.setState({bests: bests.data})
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Exercise />
+        {this.state.bests.length > 0 ? 
+          <FlatList
+            keyExtractor={item => item._id}
+            data={this.state.bests}
+            renderItem={({ item }) => <Exercise best={item}/> }
+          /> :
+          <NoStats />
+        }
       </View>
     )
   }

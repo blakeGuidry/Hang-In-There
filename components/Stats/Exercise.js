@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
-const Exercise = props => (
-  <View style={styles.card}>
-    <Text>Jug</Text>
-    <Text>Previous: {}</Text>
-    <Text>Best: {}</Text>
-  </View>
-)
+const Exercise = ({best}) => {
+  return (
+    <View style={styles.card}>
+      <Text style={styles.title}>{best.name}</Text>
+      <Text>Best: {best.date.slice(0, 10)}</Text>
+      <Text>Time: {best.time}</Text>
+      <Text>Weight: {best.weight}</Text>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   card: {

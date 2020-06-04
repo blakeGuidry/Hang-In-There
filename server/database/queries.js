@@ -25,7 +25,7 @@ const find = (hang, cb) => {
 }
 
 const newBest = (hang, cb) => {
-  best.findOneAndUpdate({}, hang, {upsert: true}, (err, results) => {
+  best.findOneAndUpdate({name: hang.name}, hang, {upsert: true}, (err, results) => {
     if (err) {
       console.log('Error with newBest query');
       cb(err, null);

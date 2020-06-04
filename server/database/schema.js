@@ -60,60 +60,21 @@ const sessionSchema = mongoose.Schema({
 })
 
 const bestSchema = mongoose.Schema({
-  jug: {
-    date: Date,
-    time: Number,
-    weight: Number
+  name: {
+    type: String,
+    required: true
   },
-  imr: {
-    date: Date,
-    time: Number,
-    weight: Number
+  date: {
+    type: Date,
+    required: true
   },
-  medEdge: {
-    date: Date,
-    time: Number,
-    weight: Number
+  time: {
+    type: Number,
+    required: true
   },
-  leftWidePinch: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  rightWidePinch: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  mr: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  lgOpen: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  leftMedPinch: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  rightMedPinch: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  sloper: {
-    date: Date,
-    time: Number,
-    weight: Number
-  },
-  mrp: {
-    date: Date,
-    time: Number,
-    weight: Number
+  weight: {
+    type: Number,
+    required: true
   }
 })
 
