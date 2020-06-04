@@ -33,11 +33,14 @@ class NewRecord extends React.Component {
   }
 
   submitRecord() {
-    axios.post('http://localhost:8000/stats', this.state)
+    const record = this.state;
+    axios.post('http://localhost:8000/stats', record)
       .then(() => {
         this.props.cancel();
       })
       .catch(err => console.error(err));
+    
+    this.props.update(record);
   }
 
   render() {

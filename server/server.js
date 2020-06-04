@@ -27,7 +27,6 @@ app.get('/bests', (req, res) => {
 })
 
 app.post('/stats', (req, res) => {
-  console.log(req.body)
   const session = req.body;
   db.save(session, (err, stats) => {
     if (err) {
