@@ -24,15 +24,31 @@ const find = (hang, cb) => {
   })
 }
 
-const newBest = (cb) => {
-  
+const newBest = (hang, cb) => {
+  best.findOneAndUpdate({}, hang, {upsert: true}, (err, results) => {
+    if (err) {
+      console.log('Error with newBest query');
+      cb(err, null);
+    } else {
+      cb(null, results);
+    }
+  })
 }
 
-const findBest = () => {
-  
+const findBest = (cb) => {
+  best.find({}, (err, results) => {
+    if (err) {
+      console.log('Error with findBest query');
+      cb(err, null);
+    } else {
+      cb(null, results);
+    }
+  })
 }
 
 module.exports = {
   save,
-  find
+  find,
+  newBest,
+  findBest
 }

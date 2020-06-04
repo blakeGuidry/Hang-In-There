@@ -75,7 +75,12 @@ const bestSchema = mongoose.Schema({
     time: Number,
     weight: Number
   },
-  widePinch: {
+  leftWidePinch: {
+    date: Date,
+    time: Number,
+    weight: Number
+  },
+  rightWidePinch: {
     date: Date,
     time: Number,
     weight: Number
@@ -90,7 +95,12 @@ const bestSchema = mongoose.Schema({
     time: Number,
     weight: Number
   },
-  medPinch: {
+  leftMedPinch: {
+    date: Date,
+    time: Number,
+    weight: Number
+  },
+  rightMedPinch: {
     date: Date,
     time: Number,
     weight: Number
