@@ -91,6 +91,9 @@ const Timer = props => {
           <Text style={styles.eirCountText}>{formatNumber(remain)}</Text>
         </View>
       </View>
+
+      <Text style={styles.hang}>{props.hang.name}</Text>
+      <Text style={styles.prev}>Last Time: {props.prev && props.prev.Time ? props.prev.Time : 0}     Last Weight: {props.prev && props.prev.Weight ? props.prev.Weight : 0}</Text>
       
       {current}
       {next}
@@ -136,6 +139,18 @@ const styles = StyleSheet.create({
   eirCountText: {
     color: '#fff',
     fontSize: 23
+  },
+  hang: {
+    marginTop: 23,
+    marginBottom: 5,
+    color: '#40e0d0',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  prev: {
+    marginBottom: 15,
+    color: '#40e0d0',
+    fontSize: 15
   },
   current: {
     fontSize: 40,
