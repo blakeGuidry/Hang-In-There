@@ -1,8 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Modal } from 'react-native';
 import axios from 'axios';
 
 import Timer from '../components/Session/Timer';
+import Record from '../components/Session/Record';
+
+let resetState;
 
 class Session extends React.Component {
   constructor(props) {
@@ -26,10 +29,18 @@ class Session extends React.Component {
       current: 0,
       record: false
     }
+
+    this.recordActive = this.recordActive.bind(this);
+    this.record = this.record.bind(this);
   }
 
   componentDidMount() {
+    resetState = Object.assign({}, this.state);
     this.getPrev();
+  }
+
+  reset() {
+    this.setState(resetState, this.getPrev());
   }
 
   getPrev() {
@@ -40,8 +51,37 @@ class Session extends React.Component {
       .catch(err => console.error(err, 'Error getting previous'));
   }
 
-  record() {
+  recordActive() {
+    this.setState({record: true})
+  }
 
+  record(time, weight) {
+    let hangs = this.state.hangs.slice();
+    hangs[this.state.current].Time = time;
+    hangs[this.state.current].Weight = weight;
+
+    if (this.state.current === 10) {
+      this.setState({
+        hangs: hangs,
+        record: false
+      }, this.post)
+    } else {
+      this.setState({
+        hangs: hangs,
+        current: this.state.current + 1,
+        record: false
+      })
+    }
+  }
+
+  post() {
+    const record = { Date: this.state.Date }
+    this.state.hangs.forEach(hang => {
+      record[hang.name] = { Time: hang.Time, Weight: hang.Weight }
+    })
+    axios.post('http://localhost:8000/stats', record)
+      .then(() => this.resetState() )
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -50,7 +90,8 @@ class Session extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Timer hang={current} prev={previous}/>
+        <Timer hang={current} prev={previous} toggle={this.recordActive}/>
+        <Record visible={this.state.record} record={this.record}/>
       </View>
     )
   }

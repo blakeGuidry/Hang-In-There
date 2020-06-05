@@ -48,6 +48,7 @@ const Timer = props => {
           } else {
             clearInterval(interval);
             setRemaining(0);
+            props.toggle();
           }
         }
 
