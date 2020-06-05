@@ -24,6 +24,17 @@ const find = (hang, cb) => {
   })
 }
 
+const findMostRecent = (cb) => {
+  session.find({}).sort({Date: -1}).limit(1).exec((err, results) => {
+    if (err) {
+      console.log('Error with findMostRecent query');
+      cb(err, null);
+    } else {
+      cb(null, results);
+    }
+  })
+}
+
 const newBest = (hang, cb) => {
   best.findOneAndUpdate({name: hang.name}, hang, {upsert: true}, (err, results) => {
     if (err) {
@@ -50,5 +61,6 @@ module.exports = {
   save,
   find,
   newBest,
-  findBest
+  findBest,
+  findMostRecent
 }

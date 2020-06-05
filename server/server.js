@@ -26,6 +26,16 @@ app.get('/bests', (req, res) => {
   })
 })
 
+app.get('/prev', (req, res) => {
+  db.findMostRecent((err, prev) => {
+    if (err) {
+      res.status(500).send('Error retreiving prev');
+    } else {
+      res.send(prev);
+    }
+  })
+})
+
 app.post('/stats', (req, res) => {
   const session = req.body;
   db.save(session, (err, stats) => {
