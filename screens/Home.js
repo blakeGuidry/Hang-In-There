@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, ImageBackground } from 'react-native';
 
 const Home = ({ navigation }) => (
-  <View style={styles.container}>
-    <Text>Home Screen</Text>
-    <Button title='Stats' onPress={() => navigation.navigate('Stats')}/>
-    <Button title='New Session' onPress={() => navigation.navigate('Session')}/>
-  </View>
+  <ImageBackground style={styles.container} source={require('../assets/kitty.png')}>
+    <View style={styles.container}>
+      <Button title='Stats' onPress={() => navigation.navigate('Stats')}/>
+      <Button title='New Session' onPress={() => navigation.navigate('Session')}/>
+    </View>
+    <Text style={styles.title}>Hang In There</Text>
+  </ImageBackground>
 )
 
 const styles = StyleSheet.create({
@@ -14,6 +16,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  title: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    marginBottom: 50
   }
 })
 

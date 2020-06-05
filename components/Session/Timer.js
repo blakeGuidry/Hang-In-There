@@ -11,6 +11,22 @@ const Timer = props => {
   const [remain, setRemain] = useState(60);
   const [stage, setStage] = useState(1);
 
+  const goNext = () => {
+    if (stage % 2 !== 0) {
+      setInt(int => int + 1);
+      setStage(stage => stage + 1);
+      setRemaining(10);
+    } else if (stage % 2 === 0 && stage < 12) {
+      setStage(stage => stage + 1);
+      setRemaining(5);
+      setElapsed(elapsed => elapsed + remaining);
+      setRemain(remain => remain - remaining);
+    } else {
+      reset();
+      props.toggle();
+    }
+  }
+
   const startStop = () => {
     setActive(!active);
   }
@@ -97,7 +113,9 @@ const Timer = props => {
       <Text style={styles.prev}>Last Time: {props.prev && props.prev.Time ? props.prev.Time : 0}     Last Weight: {props.prev && props.prev.Weight ? props.prev.Weight : 0}</Text>
       
       {current}
-      {next}
+      <TouchableOpacity onPress={goNext}>
+        {next}
+      </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={reset} style={[styles.button, styles.resetButton]}>

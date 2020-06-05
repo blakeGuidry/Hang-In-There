@@ -80,7 +80,7 @@ class Session extends React.Component {
       record[hang.name] = { Time: hang.Time, Weight: hang.Weight }
     })
     axios.post('http://localhost:8000/stats', record)
-      .then(() => this.resetState() )
+      .then(() => this.reset() )
       .catch(err => console.error(err));
   }
 
